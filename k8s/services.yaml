@@ -5,12 +5,13 @@ metadata:
   labels:
     component: elasticsearch
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     component: elasticsearch
   ports:
     - name: http
       port: 9200
+      targetPort: 9200
       protocol: TCP
 ---
 apiVersion: v1
@@ -20,10 +21,11 @@ metadata:
   labels:
     run: kibana
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     run: kibana
   ports:
     - name: http
       port: 5601
+      targetPort: 5601
       protocol: TCP

@@ -1,0 +1,35 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: elasticsearch
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /es
+        backend:
+          serviceName: elasticsearch
+          servicePort: 9200
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: kibana
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+       rewrite ^/kibana/(.*)$ /$1 break;
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /kibana
+        backend:
+          serviceName: kibana
+          servicePort: 5601
+

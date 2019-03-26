@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
@@ -43,6 +44,8 @@ spec:
               value: "http://elasticsearch:9200"
             - name: XPACK_SECURITY_ENABLED
               value: "true"
+            - name: SERVER_BASEPATH
+              value: "/kibana"
           ports:
             - containerPort: 5601
               name: http

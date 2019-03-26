@@ -1,7 +1,7 @@
 
 #!/bin/bash
 
-PROFILE_NAME=demo-loggin
+export PROFILE_NAME=logger-k8
 SEPARATOR="========================================================================================================================"
 
 kubectl config use-context $PROFILE_NAME
